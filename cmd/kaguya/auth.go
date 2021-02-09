@@ -30,7 +30,7 @@ func newAuth(cookie string) Kernel.AuthorizeInterface {
 	authorize := new(Authorize)
 	authorize.cookie = cookie
 	result := postRequest(
-		"http://dev.localhost:5000/api/verify",
+		"http://localhost:5000/api/verify",
 		url.Values{"authToken": {cookie}},
 	)
 	authorize.identity = result["reason"].(string)

@@ -22,16 +22,23 @@ import (
 )
 
 type Authorize struct {
-	me *Kernel.User
+	cookie   string
+	identity string
 }
 
 func newAuth(cookie string) Kernel.AuthorizeInterface {
 	authorize := new(Authorize)
-	me := new(Kernel.User)
-	response, err := http.PostForm(
+	authorize.cookie = cookie
+	result := postRequest(
 		"http://dev.localhost:5000/api/verify",
 		url.Values{"authToken": {cookie}},
 	)
+	authorize.identity = result["reason"].(string)
+	return authorize
+}
+
+func postRequest(url string, formData url.Values) map[string]interface{} {
+	response, err := http.PostForm(url, formData)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -49,16 +56,14 @@ func newAuth(cookie string) Kernel.AuthorizeInterface {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	me.Identity = result["reason"].(string)
-	authorize.me = me
-	return authorize
+	return result
 }
 
-func (authorize Authorize) Me() *Kernel.User {
-	return authorize.me
+func (authorize *Authorize) Me() string {
+	return authorize.identity
 }
 
-func (authorize Authorize) Permission(tableName string) bool {
+func (authorize *Authorize) Permission(tableName string) bool {
 	if tableName != "" {
 		return true
 	}

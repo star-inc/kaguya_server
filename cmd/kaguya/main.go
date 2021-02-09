@@ -21,15 +21,20 @@ import (
 
 func main() {
 	router := gin.Default()
+	const authCookie = "kaguya_token"
 
 	dbConfig := Kernel.RethinkConfig{
-		ConnectConfig: Rethink.ConnectOpts{Address: "localhost"},
 		DatabaseName:  "Kaguya",
+		ConnectConfig: Rethink.ConnectOpts{Address: "localhost"},
 	}
 
-	router.GET("/talk", func(c *gin.Context) {
-		service := TalkService.NewServiceInterface(dbConfig, "talk")
-		cookie, err := c.Request.Cookie("kaguya_token")
+	router.GET("/talk/:target", func(c *gin.Context) {
+		manager := TalkService.NewManager(dbConfig, c.Param("target"))
+		if !manager.Check() {
+			manager.Create()
+		}
+		service := TalkService.NewServiceInterface(dbConfig, c.Param("target"))
+		cookie, err := c.Request.Cookie(authCookie)
 		if err != nil {
 			panic(err)
 		}

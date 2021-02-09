@@ -33,7 +33,13 @@ func main() {
 		if !manager.Check() {
 			manager.Create()
 		}
-		service := TalkService.NewServiceInterface(dbConfig, c.Param("target"))
+		service := TalkService.NewServiceInterface(
+			dbConfig,
+			c.Param("target"),
+			func(contentType int, content string) bool {
+				return true
+			},
+		)
 		cookie, err := c.Request.Cookie(authCookie)
 		if err != nil {
 			panic(err)

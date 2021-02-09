@@ -1,6 +1,6 @@
-# Kaguya
+# Kaguya Deploy Example
 
-The opensource instant messaging server.
+The opensource instant messaging framework.
 
 ![logo](logo.svg)
 

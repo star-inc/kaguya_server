@@ -8,7 +8,7 @@ require (
 	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/sirupsen/logrus v1.7.0 // indirect
-	github.com/star-inc/kaguya_kernel v0.0.0-20210209163227-6d5122c6f6af
+	github.com/star-inc/kaguya_kernel v0.0.0-20210209180949-e238b73cb06d
 	go.mongodb.org/mongo-driver v1.4.6 // indirect
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad // indirect
 	golang.org/x/net v0.0.0-20210119194325-5f4716e94777 // indirect

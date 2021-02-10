@@ -1,4 +1,4 @@
-# Kaguya Deploy Example
+# Kaguya Server Example
 
 The opensource instant messaging framework.
 

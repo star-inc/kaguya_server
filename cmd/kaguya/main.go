@@ -44,7 +44,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		handler := Kernel.Run(service, newAuth(cookie.Value))
+		handler := Kernel.Run(service, newAuth(cookie.Value), "kaguya_test")
 		err = handler.HandleRequest(c.Writer, c.Request)
 		if err != nil {
 			panic(err)

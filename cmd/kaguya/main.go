@@ -14,9 +14,9 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	Kernel "github.com/star-inc/kaguya_kernel"
-	TalkService "github.com/star-inc/kaguya_kernel/service/talk"
 	Rethink "gopkg.in/rethinkdb/rethinkdb-go.v6"
+	Kernel "gopkg.in/star-inc/kaguyakernel.v1"
+	TalkService "gopkg.in/star-inc/kaguyakernel.v1/service/talk"
 )
 
 func main() {

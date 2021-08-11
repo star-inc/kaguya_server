@@ -14,7 +14,7 @@ package main
 
 import (
 	"encoding/json"
-	Kernel "github.com/star-inc/kaguya_kernel"
+	Kernel "gopkg.in/star-inc/kaguyakernel.v1"
 	"io/ioutil"
 	"log"
 	"net/http"
